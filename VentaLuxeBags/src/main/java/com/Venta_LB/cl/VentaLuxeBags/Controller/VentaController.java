@@ -1,0 +1,72 @@
+package com.Venta_LB.cl.VentaLuxeBags.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.Venta_LB.cl.VentaLuxeBags.Model.Venta;
+import com.Venta_LB.cl.VentaLuxeBags.Service.VentaService;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+
+
+@Controller
+@RequestMapping("/venta")
+public class VentaController {
+
+    @Autowired
+    private VentaService ventaservice;
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<Venta>> listarVentas() {
+        List <Venta> ventas = ventaservice.listarVentas();
+        if (ventas.isEmpty()) {
+            return ResponseEntity.noContent().build(); //204
+            
+        }
+        
+        return ResponseEntity.ok(ventas);
+    }
+
+    @PostMapping("/guardar")
+    public ResponseEntity<String> guardarVenta(@RequestBody Venta venta) {
+
+        String mensaje =  ventaservice.realizarVenta(venta);
+
+        if (mensaje.contains("Error")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
+    }
+
+
+    @PostMapping("/guardar-Ventas")
+    public ResponseEntity<String> guardarVentas(@RequestBody List<Venta> ventas) {
+        
+        
+        String mensaje =  ventaservice.guardarVentas(ventas);
+
+        if (mensaje.contains("Error")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
+    }
+    
+
+
+    
+
+
+
+
+
+    
+}
