@@ -45,6 +45,15 @@ public class VentaService {
         return "Hay: " +  ventas.size() + " Ventas guardadas con exito";
     }
 
+    public String eliminarVenta(Integer Idventa){
+        ventarepository.deleteById(Idventa);
+        return "Se elimino la venta con el ID: "+ Idventa ;
+    }
+
+    public Venta buscarPoriD (Integer id){
+        return ventarepository.findById(id).orElse(null);
+    }
+
 
 
 

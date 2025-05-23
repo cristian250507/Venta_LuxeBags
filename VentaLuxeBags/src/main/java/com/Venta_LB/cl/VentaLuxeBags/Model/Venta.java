@@ -41,7 +41,7 @@ public class Venta {
     private Detalle_Venta detalleventa;
 
     @ManyToOne
-    @JoinColumn(name = "id_cupon", nullable = false)
+    @JoinColumn(name = "id_cupon", nullable = true )
     private Cupon cupon;
 
 
