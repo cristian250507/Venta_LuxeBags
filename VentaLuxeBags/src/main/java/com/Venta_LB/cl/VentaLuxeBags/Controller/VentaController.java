@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -72,6 +74,24 @@ public class VentaController {
         String mensaje = ventaservice.eliminarVenta(id);
         return ResponseEntity.ok(mensaje);
     }
+
+    @PutMapping("Actualizar")
+    public ResponseEntity<String> actualizarVenta(@RequestBody Venta venta) {
+        Venta ventaExiste = ventaservice.buscarPoriD(venta.getId());
+        if (ventaExiste == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No hay un cliente con ese ID");
+        }
+        ventaExiste.setCliente(venta.getCliente());
+        ventaExiste.setFecha(venta.getFecha());
+        ventaExiste.setProducto(venta.getProducto());
+        ventaExiste.setTotal(venta.getTotal());
+        ventaExiste.setDetalleventa(venta.getDetalleventa());
+        ventaExiste.setCupon(venta.getCupon());
+        String mensaje = ventaservice.actualizarVenta(ventaExiste);
+        return ResponseEntity.ok(mensaje);
+    }
+
+
     
 
 

@@ -54,6 +54,11 @@ public class VentaService {
         return ventarepository.findById(id).orElse(null);
     }
 
+    public String actualizarVenta (Venta venta){
+        ventarepository.save(venta);
+        return "Cliente con ID: "+ venta.getId() + " Actualizado";
+    }
+
 
 
 
