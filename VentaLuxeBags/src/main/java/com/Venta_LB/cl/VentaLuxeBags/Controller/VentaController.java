@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
-
-
-
 @Controller
 @RequestMapping("/venta")
 public class VentaController {
@@ -40,6 +37,16 @@ public class VentaController {
         return ResponseEntity.ok(ventas);
     }
 
+    @GetMapping("/listar/id/{id}")
+    public ResponseEntity<Venta> ListarVentaPorID(@PathVariable Integer id) {
+        Venta venta = ventaservice.buscarPoriD(id);
+        if (venta==null) {
+            ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(venta);
+    }
+    
+
     @PostMapping("/guardar")
     public ResponseEntity<String> guardarVenta(@RequestBody Venta venta) {
 
@@ -57,10 +64,6 @@ public class VentaController {
          
         
         String mensaje =  ventaservice.guardarVentas(ventas);
-
-        if (mensaje.contains("Error")) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
-        }
         return ResponseEntity.status(HttpStatus.CREATED).body(mensaje);
     }
 
