@@ -37,7 +37,6 @@ public class Venta {
     private String fecha;
 
     @OneToOne
-    @JoinColumn(name = "id_detalleventa", nullable = false)
     private Detalle_Venta detalleventa;
 
     @ManyToOne
