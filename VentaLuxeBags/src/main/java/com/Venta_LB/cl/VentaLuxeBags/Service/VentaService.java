@@ -26,11 +26,9 @@ public class VentaService {
     }
 
     public String realizarVenta(Venta venta){
-
         if (ventarepository.existsByDetalleventaId(venta.getDetalleventa().getId())) {
             return "Ese ID de Detalle de Venta ya está asociado a otra venta.";
         }
-
         ventarepository.save(venta);
         return "La venta con el ID: " + venta.getId() +" fue agregada";
     }

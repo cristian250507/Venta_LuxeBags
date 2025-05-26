@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -92,6 +94,18 @@ public class VentaController {
         ventaExiste.setCupon(venta.getCupon());
         String mensaje = ventaservice.actualizarVenta(ventaExiste);
         return ResponseEntity.ok(mensaje);
+    }
+
+
+
+
+    @GetMapping("/listar/producto/{producto}")
+    public ResponseEntity<List<Venta>> listarVentasPorProducto(@PathVariable("producto") String producto) {
+        List<Venta> ventas = ventaservice.buscarPorProducto(producto);
+        if (ventas == null || ventas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Devuelve un 404 si no hay ventas
+        }
+        return ResponseEntity.ok(ventas); // Devuelve las ventas con un 200 OK
     }
 
 
