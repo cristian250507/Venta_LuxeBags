@@ -9,7 +9,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.Venta_LB.cl.VentaLuxeBags.Model.ClienteDTO;
-import com.Venta_LB.cl.VentaLuxeBags.Model.Detalle_Venta;
 import com.Venta_LB.cl.VentaLuxeBags.Model.ProductoDTO;
 import com.Venta_LB.cl.VentaLuxeBags.Model.Venta;
 

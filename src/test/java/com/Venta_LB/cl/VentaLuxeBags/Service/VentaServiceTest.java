@@ -3,23 +3,21 @@ package com.Venta_LB.cl.VentaLuxeBags.Service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.Venta_LB.cl.VentaLuxeBags.Model.Cupon;
+
 import com.Venta_LB.cl.VentaLuxeBags.Model.Detalle_Venta;
 import com.Venta_LB.cl.VentaLuxeBags.Model.Venta;
 import com.Venta_LB.cl.VentaLuxeBags.Repository.VentaRepository;
